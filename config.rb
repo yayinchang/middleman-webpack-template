@@ -4,6 +4,8 @@ set :js_dir, 'assets/javascripts'
 set :css_dir, 'assets/stylesheets'
 set :images_dir, 'images'
 
+set :slim, { :format => :html }
+
 activate :autoprefixer do |prefix|
   prefix.browsers = "last 2 versions"
 end
@@ -15,11 +17,12 @@ activate :external_pipeline,
   source: ".tmp/dist",
   latency: 1
 
+# Localization
+# https://middlemanapp.com/advanced/localization/
+activate :i18n, :langs => [:en, :'zh-TW'], :mount_at_root => :'zh-TW'
+
 configure :development do
-  # Livereload
   activate :livereload
-  # config[:css_dir] = ".tmp/dist"
-  # config[:js_dir] = ".tmp/dist"
 end
 
 # Layouts
